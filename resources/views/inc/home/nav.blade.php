@@ -13,7 +13,7 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-         <li style="padding-left:40px; padding-right:40px;"><a href="#">首页</a></li>
+         <li style="padding-left:40px; padding-right:40px;"><a href="/">首页</a></li>
           <li class="dropdown" style="padding-left:40px; padding-right:40px;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">运维 <span class="caret"></span></a>
             <ul class="dropdown-menu">
