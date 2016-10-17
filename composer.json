@@ -16,7 +16,8 @@
         "latrell/alipay":"dev-master",
         "overtrue/laravel-wechat":"~3.0",
         "simplesoftwareio/simple-qrcode": "~1",
-        "maxhoffmann/parsedown-laravel": "dev-master"
+        "maxhoffmann/parsedown-laravel": "dev-master",
+        "pili-engineering/pili-sdk-php": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

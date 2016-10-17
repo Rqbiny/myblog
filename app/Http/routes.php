@@ -35,10 +35,18 @@ Route::group(['domain' => 'admin.rqbin.net'], function () {
             Route::get('/','Admin\IndexController@index');
             //后台登出
             Route::get('/logout','Admin\indexController@logout');
+
+            /*
+            *   后台分类模块
+            */
             //后台分类查出三级分类
             Route::get('/category/cate/{num}','Admin\CategoryController@cate');
             //后台分类模块
             Route::resource('/category','Admin\CategoryController');
+
+            /*
+            *   后台文章模块
+            */
             //后台文章MarkDown预览
             Route::post('/article/preview','Admin\ArticleController@preview');
             //后台文章模块
@@ -56,7 +64,10 @@ Route::group(['domain' => 'www.rqbin.net'], function () {
     /*
     *   前台文章模块
     */
-    Route::get('/article/info/{num}','Home\ArticleController@info');
+    //前台文章列表
+    Route::get('/article/list/{num}','Home\ArticleController@articleList');
+    //前台文章内容
+    Route::get('/article/info/{num}','Home\ArticleController@articleInfo');
 
 });
 

@@ -16,11 +16,7 @@
   </script>
   <script type="text/javascript" src="/dist/files/js/js_three.js"></script>
   <script type="text/javascript" src="/dist/files/js/js_four.js"></script>
-  <script type="text/javascript">
-  <!--//--><![CDATA[//><!--
-  jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"ninghao","theme_token":"lsMH-lY0C35zaPM-KroO6973ZRmfpu9a5Lc3_zOkWOk","js":{"sites\/all\/modules\/jquery_update\/replace\/jquery\/1.7\/jquery.min.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"public:\/\/languages\/zh-hans_jdOVLGhxp3ay5J7N_RoVAMRXIqCbOCvEzAP-f5zpMlw.js":1,"misc\/autocomplete.js":1,"sites\/all\/modules\/search_api_autocomplete\/search_api_autocomplete.js":1,"sites\/all\/modules\/piwik\/piwik.js":1,"0":1,"sites\/all\/libraries\/autopager\/jquery.autopager-1.0.0.js":1,"sites\/all\/modules\/gd_infinite_scroll\/js\/gd_infinite_scroll.js":1,"sites\/all\/themes\/ninghao\/js\/bootstrap.min.js":1,"sites\/all\/themes\/ninghao\/js\/headroom.min.js":1,"sites\/all\/themes\/ninghao\/js\/jQuery.headroom.min.js":1,"sites\/all\/themes\/ninghao\/js\/plyr.js":1,"sites\/all\/themes\/ninghao\/js\/jquery.touchSwipe.min.js":1,"sites\/all\/themes\/ninghao\/js\/jquery.vide.min.js":1,"sites\/all\/themes\/ninghao\/js\/jquery.mixitup.min.js":1,"sites\/all\/themes\/ninghao\/js\/scrollReveal.min.js":1,"sites\/all\/themes\/ninghao\/js\/ninghao.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/themes\/ninghao\/css\/system.base.css":1,"sites\/all\/themes\/ninghao\/css\/system.menus.css":1,"sites\/all\/themes\/ninghao\/css\/system.messages.css":1,"sites\/all\/themes\/ninghao\/css\/system.theme.css":1,"sites\/all\/themes\/ninghao\/css\/ckeditor.css":1,"sites\/all\/themes\/ninghao\/css\/ctools.css":1,"sites\/all\/themes\/ninghao\/css\/bootstrap.min.css":1,"sites\/all\/themes\/ninghao\/css\/bootstrap-responsive.min.css":1,"sites\/all\/themes\/ninghao\/css\/base.css":1,"sites\/all\/themes\/ninghao\/css\/pages.css":1,"sites\/all\/themes\/ninghao\/css\/thumbnails.css":1,"sites\/all\/themes\/ninghao\/css\/animate.css":1,"sites\/all\/themes\/ninghao\/css\/plyr.css":1,"sites\/all\/themes\/ninghao\/css\/spin.css":1,"sites\/all\/themes\/ninghao\/css\/statistic.css":1,"sites\/all\/themes\/ninghao\/css\/item.css":1,"sites\/all\/themes\/ninghao\/css\/ninghao.css":1,"sites\/all\/themes\/ninghao\/css\/responsive.css":1,"sites\/all\/themes\/ninghao\/css\/css3.css":1,"sites\/all\/themes\/ninghao\/css\/print.css":1,"sites\/all\/themes\/ninghao\/css\/ie.css":1,"sites\/all\/themes\/ninghao\/css\/ie6.css":1}},"better_exposed_filters":{"views":{"course_list":{"displays":{"course_list":{"filters":[]}}}}},"urlIsAjaxTrusted":{"\/search":true},"piwik":{"trackMailto":1},"gd_infinite_scroll":{"1":{"img_path":"http:\/\/ninghao.net\/sites\/all\/modules\/gd_infinite_scroll\/images\/ajax-loader.gif","name":"course_list","pager_selector":".pagination ul","next_selector":".pagination .next  a:first","content_selector":".thumbnails","items_selector":".mix","load_more":1,"load_more_markup":"\u003Ca class=\u0022btn btn-block btn-large load-more\u0022\u003E\u52a0\u8f7d\u66f4\u591a...\u003C\/a\u003E","database_override":true,"url":"course\/*"}}});
-  //--><!]]>
-  </script>
+
 <!--[if lt IE 9]>
   <script src="http://ninghao.net/sites/all/themes/ninghao/js/html5.js"></script>
 <![endif]-->
@@ -38,59 +34,11 @@
 <!-- 导航栏 -->
 @include('inc.home.nav')
 
-<!-- 简易轮播图 -->
-<div class="banner">
-    <ul style="margin-left:0px">
-        <li style="background-image: url('/images/01.jpg');">
-            <div class="inner">
-                <h1>The jQuery slider that just slides.</h1>
-                <p>就是这个不到3kb的插件！没有奇特的特效或无用的标签。</p>
-
-                <a href="#download">下载</a>
-            </div>
-        </li>
-
-        <li style="background-image: url('/images/02.jpg');">
-            <div class="inner">
-                <h1>Fluid, flexible, fantastically minimal.</h1>
-                <p>Use any HTML in your slides, extend with CSS. You have full control.</p>
-
-                <a href="#download">下载</a>
-            </div>
-        </li>
-
-        <li style="background-image: url('/images/03.jpg');">
-            <div class="inner">
-                <h1>开源</h1>
-                <p>Unslider的所有源码都托管在GitHub上。</p>
-
-                <a href="//github.com/idiot/unslider">参与</a>
-            </div>
-        </li>
-
-        <li style="background-image: url('/images/02.jpg');">
-            <div class="inner">
-                <h1>Uh, that’s about it.</h1>
-                <p>I just wanted to show you another slide.</p>
-
-                <a href="#download">下载</a>
-            </div>
-        </li>
-    </ul>
-</div>
-
 <div id="mainbody">
   <div class="container">
     <div class="row">
       <div class="span12">
         <div class="maincontent" align="center">
-            <section class="tag-menu four clearfix">
-                <ul class="menu nav"><li class="first leaf"><a href="/course/tag/tool" title="">最新文章</a></li>
-                    <li class="leaf"><a href="/course/tag/service" title="">热门文章</a></li>
-                    <li class="collapsed"><a href="/course/tag/frontend" title="">安全相关</a></li>
-                    <li class="last collapsed"><a href="/course/tag/backend" title="">开发优化</a></li>
-                </ul>
-            </section>
 
                     <ul class="thumbnails overlay basic">
                   <li class="span4 mix recommend unfinished" data-created="" data-updated="1469324048" data-weight="">
