@@ -88,10 +88,8 @@
                                     echo "<div class='alert alert-info' role='alert'>$mes</div>";
                                 };
                             ?>
-                            <form action="/release" class="form-horizontal" method="post" id="myform">
-                                <input type="hidden" name="uid" value="{{Auth::user()['users_id']}}">
-                                <input type="hidden" name="name" value="{{Auth::user()['username']}}">
-                                <input type="hidden" name="headpic" value="{{Auth::user()['headpic']}}">
+                            <form action="/article" class="form-horizontal" method="post" id="myform">
+                                <input type="hidden" name="author" value="{{Auth::user()['username']}}">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">文章分类</label>
                                     <div class="col-sm-10">
@@ -120,15 +118,21 @@
                                     </div><!--end col-sm-10-->
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="name">标题：</label>
+                                    <label class="col-sm-2 control-label" for="name">标题</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="title" class="form-control" id="title" placeholder="标题" required>
+                                        <input type="text" name="title" class="form-control" id="title" placeholder="标题15字以内" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="name">副标题</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" name="subheading" class="form-control" id="subheading" placeholder="副标题20字以内" required>
                                     </div>
                                 </div>
                                 <ul class="form-group hidden" id="img">
                                 </ul>
                                 <div class="gal form-group">
-                                    <label class="col-sm-2 control-label" for="name"></label>
+                                    <label class="col-sm-2 control-label" for="name">封面</label>
                                     <div class="col-sm-3">
                                         <div id="detailbox">
                                             <div id="detail"></div>
@@ -137,7 +141,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="name">标签</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="tags" class="form-control" placeholder="文章的标签 多个标签以空格隔开" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-2 control-label" for="name">内容</label>
+                                    <input type="hidden" name="savetype" value="1">
                                     <div class="col-sm-8">
                                         <textarea class="form-control" name="content" id="content" rows="10" required></textarea>
                                     </div>

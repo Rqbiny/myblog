@@ -1,4 +1,4 @@
-/* 
+/*
  *	jQuery文件上传插件,封装UI,上传处理操作采用Baidu WebUploader;
  *	@Author 黑爪爪;
  */
@@ -132,7 +132,7 @@
 			//按钮容器;
 			pick:{
 				id:objId,
-				label:"点击选择图片"
+				label:"请务必上传图片"
 			},
 			//类型限制;
 			accept:{
@@ -195,7 +195,7 @@
 
 	}
 
-	//取消事件;	
+	//取消事件;
 	function removeLi ( $li ,file_id ,webUploader) {
 		webUploader.removeFile( file_id );
 		if ( $li.siblings('li').length <= 0 ) {
@@ -206,7 +206,7 @@
 
 	}
 
-	//创建文件操作div;	
+	//创建文件操作div;
 	function createBox( $fileInput, file, webUploader ) {
 
 		var file_id = file.id;

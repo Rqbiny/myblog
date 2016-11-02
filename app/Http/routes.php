@@ -37,6 +37,12 @@ Route::group(['domain' => 'admin.rqbin.net'], function () {
             Route::get('/logout','Admin\indexController@logout');
 
             /*
+            *   上传分类模块
+            */
+            //后台文章模块
+            Route::post('/imgupload','Admin\UploadController@imgUpload');
+
+            /*
             *   后台分类模块
             */
             //后台分类查出三级分类

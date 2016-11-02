@@ -59,7 +59,7 @@
                 e(window).resize(r)
             }
             if (this.opts.arrows) {
-                this.el.parent().append('<p class="arrows"><span class="prev">←</span><span class="next">→</span></p>').find(".arrows span").click(function() {
+                this.el.parent().append('<p class="arrows"><span class="prev"></span><span class="next"></span></p>').find(".arrows span").click(function() {
                     e.isFunction(n[this.className]) && n[this.className]()
                 })
             }

@@ -75,32 +75,68 @@ $(function (){
     		},
     		//编写验证规则，在真正执行ajax提交前验证
     		rules:{
-    			parent:"required",
-				section:"required",
-				category:"required",
-    			title:"required",
-    			content:"required",
+    			parent:{
+                    required:true
+                },
+				section:{
+                     required:true
+                 },
+				category:{
+                    required:true
+                },
+    			title:{
+                    required:true,
+                    rangelength:[3,15]
+                },
+                subheading:{
+                    required:true,
+                    rangelength:[3,20]
+                },
+    			content:{
+                    required:true
+                },
+                tags:{
+                    required:true
+                },
     		},
     		messages:{
-				parent:"分类得选一个吧？",
-				section:"二级分类得选一个吧？",
-				category:"三级分类得选一个吧?",
-    			title:'标题得写吧？',
-    			content:'写点东西吧',
+				parent:{
+                     required:"分类得选一个吧？",
+                },
+				section:{
+                    required:"二级分类得选一个吧？",
+                },
+				category:{
+                    required:"三级分类得选一个吧?",
+                },
+    			title:{
+                    required:'标题得写吧?',
+                    rangelength: "标题长度应该为三到十五个字"
+                },
+                subheading:{
+                    required:"写个副标题吧",
+                    rangelength: "副标题长度应该为三到二十个字"
+                },
+    			content:{
+                    required:'写点东西吧',
+                },
+                tags:{
+                    required:'加个标签吧',
+                },
     		}
     });
 
     /*上传图片*/
     $('#detail').diyUpload({
-        url:'/releaseimg',
+        url:'/imgupload',
         success:function( data ) {
-            console.info( data.message );
+            //console.info( data.message );
             var len=$("#img").find("li").length;
-            var lis='<li> <input type="hidden" name="pic[]" value="'+data.url+'"> </li>';
+            var lis='<li> <input type="hidden" name="img" value="'+data.url+'"> </li>';
             $("#img").append(lis);
         },
         error:function( err ) {
-            console.info( err );
+            //console.info( err );
         }
     });
 });
