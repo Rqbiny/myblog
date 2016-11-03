@@ -67,7 +67,8 @@ class ArticleController extends Controller
                 'tags_match' =>  $tags_match,
                 'created_at' =>  date('Y-m-d H:i:s',time()),
                 'author'     =>  $request->author,
-                'parent_id'  =>  $request->section,
+                'section_id' =>  $request->section,
+                'parent_id'  =>  $request->parent,
                 'cat_id'     =>  $request->category,
                 'img'        =>  $request->img,
             ]

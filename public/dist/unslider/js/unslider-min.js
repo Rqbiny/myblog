@@ -10,7 +10,7 @@
         this.interval = t;
         this.opts = {
             speed: 500,
-            delay: 3e3,
+            delay: 5000,
             complete: t,
             keys: !t,
             dots: t,

@@ -4515,7 +4515,7 @@
                         offset: {
                             top: function () {
                                 var currentUrl = location.pathname,
-                                key = 'course';
+                                key = '';
                                 if (new RegExp('\\b' + key + '\\b').test(currentUrl)) {
                                     return 530;
                                 } else {
@@ -4622,10 +4622,11 @@
                         "unpinned": "slideOutUp"
                     }
                 });
+
                 // destroy
                 $("#header").headroom("destroy");
-
+                报错解决问题
             }
         }
     };
-})(jQuery, Drupal);;
+})(jQuery, Drupal);

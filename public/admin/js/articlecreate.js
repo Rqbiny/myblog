@@ -47,7 +47,7 @@ $(function (){
 		var title=$('#title').val();
 		//获取markdown的内容
 		var content=$('#content').val();
-		console.log($('#viewcontent'));
+		//console.log($('#viewcontent'));
 		$.post("/article/preview",{content:content},function(data,status){
 			$('#viewtitle').text(title);
 			$('#viewcontent').html(data);
@@ -64,7 +64,7 @@ $(function (){
                 success: function (data) {
                     if(data.ServerNo == 0){
                         alert(data.ResultData.Message);
-                        location.reload();
+                        //location.reload();
                     }else{
                         alert(data.ResultData.Message);
                     }
@@ -86,7 +86,7 @@ $(function (){
                 },
     			title:{
                     required:true,
-                    rangelength:[3,15]
+                    rangelength:[3,20]
                 },
                 subheading:{
                     required:true,
@@ -111,7 +111,7 @@ $(function (){
                 },
     			title:{
                     required:'标题得写吧?',
-                    rangelength: "标题长度应该为三到十五个字"
+                    rangelength: "标题长度应该为三到二十个字"
                 },
                 subheading:{
                     required:"写个副标题吧",

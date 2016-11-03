@@ -2,13 +2,13 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style="padding-right:66px;">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">My Blog</a>
+      <a class="navbar-brand" href="/" style="padding-left:40px;">My Blog</a>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
@@ -23,7 +23,7 @@
                     @foreach ($catinfo as $key => $cat_parent)
                         @if(!is_array($cat_parent))
                         <!-- <li role="separator" class="divider"></li> -->
-                        <li><a href="/article/list/{{$key}}">{{$cat_parent}}</a></li>
+                        <li><a href="/article/cat/{{$key}}">{{$cat_parent}}</a></li>
                         @else
                             @foreach ($cat_parent as $keys => $cat_son)
                             <li class="dropdown-header"><a href="/article/list/{{$keys}}">{{$cat_son}}</a></li>
@@ -43,7 +43,7 @@
                     @foreach ($catinfo as $key => $cat_parent)
                         @if(!is_array($cat_parent))
                         <!-- <li role="separator" class="divider"></li> -->
-                        <li><a href="/article/list/{{$key}}">{{$cat_parent}}</a></li>
+                        <li><a href="/article/cat/{{$key}}">{{$cat_parent}}</a></li>
                         @else
                             @foreach ($cat_parent as $keys => $cat_son)
                             <li class="dropdown-header"><a href="/article/list/{{$keys}}">{{$cat_son}}</a></li>
@@ -63,7 +63,7 @@
                   @foreach ($catinfo as $key => $cat_parent)
                       @if(!is_array($cat_parent))
                       <!-- <li role="separator" class="divider"></li> -->
-                      <li><a href="/article/list/{{$key}}">{{$cat_parent}}</a></li>
+                      <li><a href="/article/cat/{{$key}}">{{$cat_parent}}</a></li>
                       @else
                           @foreach ($cat_parent as $keys => $cat_son)
                           <li class="dropdown-header"><a href="/article/list/{{$keys}}">{{$cat_son}}</a></li>

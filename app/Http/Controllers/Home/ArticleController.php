@@ -14,11 +14,20 @@ use DB;
 class ArticleController extends Controller
 {
     /*
+    *   文章分类列表查看
+    */
+    public function articleCat($id)
+    {
+        $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->where('parent_id',$id)->orderBy('article_id','DESC')->paginate(12);
+        return view('home.article.list',compact("article_list"));
+    }
+
+    /*
     *   文章列表查看
     */
     public function articleList($id)
     {
-        $article_list=DB::table('rqbin_article')->select('article_id','title','img','author','created_at')->where('cat_id',$id)->orderBy('article_id','DESC')->paginate(9);
+        $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->where('cat_id',$id)->orderBy('article_id','DESC')->paginate(12);
         return view('home.article.list',compact("article_list"));
     }
 
@@ -27,8 +36,45 @@ class ArticleController extends Controller
     */
     public function articleInfo($id)
     {
-        $article=DB::table('rqbin_article')->select('title','content','article_id')->where('article_id',$id)->get();
-        // var_dump($article);
+        $article=DB::table('rqbin_article')->select('title','content','subheading','article_id','cat_id')->where('article_id',$id)->get();
         return view('home.article.info',compact("article"));
+    }
+
+    /*
+    *   文章下一篇(当ajax失败时使用的方法)
+    */
+    public function nextArticle($id,$cat_id)
+    {
+        $article=DB::table('rqbin_article')->select('title','content','subheading','article_id','cat_id')->where('cat_id',$cat_id)->where('article_id','>',$id)->limit(1)->get();
+        return view('home.article.info',compact("article"));
+    }
+
+    /*
+    *   文章上一篇(当ajax失败时使用的方法)
+    */
+    public function preArticle($id,$cat_id)
+    {
+        $article=DB::table('rqbin_article')->select('title','content','subheading','article_id','cat_id')->where('cat_id',$cat_id)->where('article_id','<',$id)->orderBy('article_id','DESC')->limit(1)->get();
+        return view('home.article.info',compact("article"));
+    }
+
+    /*
+    *   文章ajax查询上下文章标题与ID
+    */
+    public function ajaxArticle($id,$cat_id)
+    {
+        //定义一个数组装结果
+        $article=[];
+        $preArticle=DB::table('rqbin_article')->select('title','article_id')->where('cat_id',$cat_id)->where('article_id','<',$id)->orderBy('article_id','DESC')->limit(1)->get();
+        $nextArticle=DB::table('rqbin_article')->select('title','article_id')->where('cat_id',$cat_id)->where('article_id','>',$id)->limit(1)->get();
+        //判断是否有前一篇
+        if($preArticle){
+            $article['preArticle']=$preArticle[0];
+        }
+        //判断是否有后一篇
+        if($nextArticle){
+            $article['nextArticle']=$nextArticle[0];
+        }
+        return $article;
     }
 }

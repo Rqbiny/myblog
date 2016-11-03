@@ -66,14 +66,24 @@ Route::group(['domain' => 'admin.rqbin.net'], function () {
 Route::group(['domain' => 'www.rqbin.net'], function () {
     //主页路由
     Route::get('/','Home\IndexController@index');
+    //主页路由
+    Route::get('/ajaxindex','Home\IndexController@ajaxindex');
 
     /*
     *   前台文章模块
     */
+    //前台分类文章列表
+    Route::get('/article/cat/{num}','Home\ArticleController@articleCat');
     //前台文章列表
     Route::get('/article/list/{num}','Home\ArticleController@articleList');
     //前台文章内容
     Route::get('/article/info/{num}','Home\ArticleController@articleInfo');
+    //前台文章下一篇(当ajax失败时使用的方法)
+    Route::get('/article/next/{num}/{cat_id}','Home\ArticleController@nextArticle');
+    //前台文章上一篇(当ajax失败时使用的方法)
+    Route::get('/article/pre/{num}/{cat_id}','Home\ArticleController@preArticle');
+    //前台文章前后篇查询(ajax查询)
+    Route::get('/article/ajaxarticle/{num}/{cat_id}','Home\ArticleController@ajaxArticle');
 
 });
 
