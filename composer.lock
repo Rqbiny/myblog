@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "62820a38a7f3f4fc07204d9e0aa1a50f",
-    "content-hash": "cd70ee833e872864fa0b8fc67fb88fe0",
+    "hash": "5ba5edf3ad12220153749b0e07d4056a",
+    "content-hash": "cb570941c03efff661069c7b864969fd",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -1615,6 +1615,65 @@
                 "random"
             ],
             "time": "2016-03-18 20:34:03"
+        },
+        {
+            "name": "pili-engineering/pili-sdk-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pili-engineering/pili-sdk-php.git",
+                "reference": "77b17bd33cbeadb3670e9f5291ec3f581165ae12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pili-engineering/pili-sdk-php/zipball/77b17bd33cbeadb3670e9f5291ec3f581165ae12",
+                "reference": "77b17bd33cbeadb3670e9f5291ec3f581165ae12",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Pili": "lib/",
+                    "Qiniu": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pili Engineering",
+                    "homepage": "https://github.com/pili-engineering"
+                }
+            ],
+            "description": "Pili Streaming Cloud server-side library for PHP.",
+            "homepage": "https://github.com/pili-engineering/pili-sdk-php",
+            "keywords": [
+                "cloud",
+                "dash",
+                "hdl",
+                "hds",
+                "hls",
+                "pili",
+                "qiniu",
+                "rtmp",
+                "streaming",
+                "web-service"
+            ],
+            "time": "2016-09-27 10:40:11"
         },
         {
             "name": "pimple/pimple",
@@ -4335,7 +4394,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "latrell/alipay": 20,
-        "maxhoffmann/parsedown-laravel": 20
+        "maxhoffmann/parsedown-laravel": 20,
+        "pili-engineering/pili-sdk-php": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

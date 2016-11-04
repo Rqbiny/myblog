@@ -41,6 +41,21 @@ $(function (){
         });
     });
 
+    //当选中markdown编辑器
+    $("input:radio[name='savetype']").change(function(){
+        var ue="";
+        if($(this).val() == 1){
+            UE.delEditor('editer');
+            $('#editer').remove();
+            $('#container').append('<div style="padding-left:0" class="col-sm-10" id="editer"><textarea class="form-control" name="content" id="content" rows="10" required></textarea></div>');
+            $("#preview").removeAttr('disabled');
+        }else if($(this).val() == 2) {
+            $('#editer textarea').remove();
+            UE.getEditor('editer');
+            $("#preview").prop('disabled','true');
+        }
+    });
+
 	//获取markdown预览
 	$('#preview').click(function(){
 		//获取标题
@@ -64,12 +79,12 @@ $(function (){
                 success: function (data) {
                     if(data.ServerNo == 0){
                         alert(data.ResultData.Message);
-                        //location.reload();
+                        location.reload();
                     }else{
                         alert(data.ResultData.Message);
                     }
                 },
-            })
+            });
             //阻止浏览器默认动作
             return false;
     		},

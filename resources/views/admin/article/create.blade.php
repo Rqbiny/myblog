@@ -60,6 +60,7 @@
             margin-bottom: 30px;
         }
     </style>
+    @include('UEditor::head')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -148,9 +149,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="name">内容</label>
-                                    <input type="hidden" name="savetype" value="1">
-                                    <div class="col-sm-8">
-                                        <textarea class="form-control" name="content" id="content" rows="10" required></textarea>
+
+                                    <div class="col-sm-10" id="container">
+                                        <div class="col-sm-3">
+                                            MarkDown:
+                                            <input type="radio" id="makedownedit" name="savetype" value="1" checked="checked">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            HTML:
+                                            <input type="radio" id="htmledit" name="savetype" value="2">
+                                        </div>
+                                        <div style="padding-left:0" class="col-sm-10" id="editer">
+                                            <textarea class="form-control" name="content" id="content" rows="10" required></textarea>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">

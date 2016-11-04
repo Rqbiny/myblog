@@ -8,13 +8,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/" style="padding-left:40px;">My Blog</a>
+      <a class="navbar-brand" href="/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My Blog</a>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-         <li style="padding-left:40px; padding-right:40px;"><a href="/">首页</a></li>
-          <li class="dropdown" style="padding-left:40px; padding-right:40px;">
+         <li style="padding-left:30px; padding-right:30px;"><a href="/">首页</a></li>
+          <li class="dropdown" style="padding-left:30px; padding-right:30px;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">运维 <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <!--  遍历数组  -->
@@ -34,7 +34,7 @@
             @endforeach
             </ul>
           </li>
-          <li class="dropdown" style="padding-left:40px; padding-right:40px;">
+          <li class="dropdown" style="padding-left:30px; padding-right:30px;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">开发 <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <!--  遍历数组  -->
@@ -54,7 +54,7 @@
             @endforeach
             </ul>
           </li>
-        <li class="dropdown" style="padding-left:40px; padding-right:40px;">
+        <li class="dropdown" style="padding-left:30px; padding-right:30px;">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">安全 <span class="caret"></span></a>
           <ul class="dropdown-menu">
               <!--  遍历数组  -->
@@ -73,7 +73,7 @@
              @endforeach
           @endforeach
           </ul>
-          <li style="padding-left:40px; padding-right:40px;"><a href="#">关于</a></li>
+          <li style="padding-left:30px; padding-right:30px;"><a href="#">关于</a></li>
         </li>
       </ul>
     </div><!--/.nav-collapse -->

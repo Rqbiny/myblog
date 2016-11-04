@@ -70,38 +70,18 @@
       <div class="span12">
         <div class="maincontent" align="center">
             <section class="tag-menu four clearfix">
-                <ul class="menu nav"><li class="first leaf"><a href="/course/tag/tool" title="">最新文章</a></li>
-                    <li class="leaf"><a href="/course/tag/service" title="">热门文章</a></li>
-                    <li class="collapsed"><a href="/course/tag/frontend" title="">安全相关</a></li>
-                    <li class="last collapsed"><a href="/course/tag/backend" title="">开发优化</a></li>
+                <ul class="menu nav">
+                    <li class="first leaf"><a href="/" title="">最新文章</a></li>
+                    <li class="leaf"><a href="/article/hot" title="">热门文章</a></li>
+                    <li class="collapsed"><a href="/article/section/3" title="">安全相关</a></li>
+                    <li class="last collapsed"><a href="#" title="">神兵利器</a></li>
                 </ul>
             </section>
 
         <ul class="thumbnails overlay basic" id="mainUl">
-        @foreach($article_new as $article)
-        <li class="span4 mix recommend unfinished pagelenght" data-created="" data-weight="">
-        <div class="thumbnail">
-          <div class="content">
-          <a href="/article/info/{{$article->article_id}}"><img typeof="foaf:Image" src="{{$article->img}}" width="673" height="300" alt="{{$article->title}}"/>  <div class="header">
-            <h3 class="title">{{$article->title}}</h3>
-            <p class="alias">{{$article->subheading}}</p>
-          </div>
-          </a>
-          </div>
-          <div class="meta">
-            <!-- <span>{{date("Y-m-d",strtotime($article->created_at))}}</span> -->
-            <span>{{$article->created_at}}</span>
-            <span class="pull-right">{{$article->author}}</span>
-          </div>
-        </div>
-        </li>
-        @endforeach
+
         </ul>
-              <!-- <div class="pull-center" style="clear:both;align-content:center">
-                  <td colspan="8" align="center">
-                      <?php echo $article_new->render(); ?>
-                  </td>
-              </div> -->
+
 
                 </div>
               </div>

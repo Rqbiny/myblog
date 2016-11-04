@@ -14,12 +14,20 @@ use DB;
 class ArticleController extends Controller
 {
     /*
-    *   文章分类列表查看
+    *   文章分类列表查看界面
     */
     public function articleCat($id)
     {
-        $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->where('parent_id',$id)->orderBy('article_id','DESC')->paginate(12);
-        return view('home.article.list',compact("article_list"));
+        return view('home.article.list');
+    }
+
+    /*
+    *   ajax文章列表查看
+    */
+    public function ajaxArticleCat($id)
+    {
+        $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->where('parent_id',$id)->orderBy('article_id','DESC')->paginate(12)->toArray();
+        return $article_list['data'];
     }
 
     /*
@@ -27,8 +35,17 @@ class ArticleController extends Controller
     */
     public function articleList($id)
     {
-        $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->where('cat_id',$id)->orderBy('article_id','DESC')->paginate(12);
-        return view('home.article.list',compact("article_list"));
+        //只提供一个界面所有交互都通过AJAX
+        return view('home.article.list');
+    }
+
+    /*
+    *   ajax文章列表查看
+    */
+    public function ajaxArticleList($id)
+    {
+        $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->where('cat_id',$id)->orderBy('article_id','DESC')->paginate(12)->toArray();
+        return $article_list['data'];
     }
 
     /*

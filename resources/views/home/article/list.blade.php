@@ -37,33 +37,8 @@
         <div class="maincontent" align="center">
 
             <ul class="thumbnails overlay basic" id="mainUl">
-            @foreach($article_list as $article)
-                      <li class="span4 mix recommend unfinished pagelenght" data-created="" data-weight="">
-            <div class="thumbnail">
-              <div class="content">
-              <a href="/article/info/{{$article->article_id}}"><img typeof="foaf:Image" src="{{$article->img}}" width="673" height="300" alt="{{$article->title}}"/>  <div class="header">
-                <h3 class="title">{{$article->title}}</h3>
-                <p class="alias">{{$article->subheading}}</p>
-              </div>
-              </a>
-              </div>
-              <div class="meta">
-                <!-- <span>{{date("Y-m-d",strtotime($article->created_at))}}</span> -->
-                <span>{{$article->created_at}}</span>
-                <span class="pull-right">{{$article->author}}</span>
-              </div>
-            </div>
-            </li>
-            @endforeach
+
             </ul>
-                  <!-- <div class="pull-center" style="clear:both;align-content:center">
-                      <td colspan="8" align="center">
-                          <?php echo $article_list->render(); ?>
-                      </td>
-                  </div> -->
-
-
-
                 </div>
               </div>
             </div>

@@ -22,7 +22,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('admin.article.index');
+        $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','author','created_at')->orderBy('article_id','DESC')->paginate(8);
+        return view('admin.article.index',compact("article_list"));
     }
 
     /**
@@ -47,10 +48,12 @@ class ArticleController extends Controller
         //将文章内容转成makedown格式
         if($request->savetype == 1){
             $content=Markdown::parse($request->content);
+        }elseif($request->savetype == 2){
+            $content=$request->editorValue;
         }
         //将标签转码以便搜索
         $tags_match="";
-        $tags_arr=explode(' ',$request->tags);
+        $tags_arr=explode(' ',strtolower($request->tags));
         if(!empty($tags_arr)){
             foreach ($tags_arr as $tag_arr) {
                 $tags_match.=bin2hex($tag_arr)." ";
@@ -80,7 +83,9 @@ class ArticleController extends Controller
             $article_match="";
             //对商品描述进行中文分词
             $seg=new \App\Segment\lib\Segment();
-            $res = $seg->get_keyword($request->content);
+            $arr_key=$request->title.$request->subheading.$request->content;
+            //$arr_key=str_replace(['(','（','）',')','；','“','”','，',',','、','"','。'],'',$arr_key);
+            $res = $seg->get_keyword($arr_key);
             $res_arr=explode(' ',$res);
             foreach ($res_arr as $res_arrs) {
                 //为索引表准备数据

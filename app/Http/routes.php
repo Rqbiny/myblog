@@ -67,15 +67,31 @@ Route::group(['domain' => 'www.rqbin.net'], function () {
     //主页路由
     Route::get('/','Home\IndexController@index');
     //主页路由
-    Route::get('/ajaxindex','Home\IndexController@ajaxindex');
+    Route::get('/ajax/index','Home\IndexController@ajaxindex');
 
     /*
     *   前台文章模块
     */
-    //前台分类文章列表
+    //主页热门文章界面
+    Route::get('/article/hot','Home\IndexController@articleHot');
+    //ajax加载主页热门文章
+    Route::get('/ajax/article/hot','Home\IndexController@ajaxArticleHot');
+
+    //主页一级分类文章界面
+    Route::get('/article/section/{num}','Home\IndexController@articleSection');
+    //ajax加载主页一级分类文章
+    Route::get('/ajax/article/section/{num}','Home\IndexController@ajaxArticleSection');
+
+    //前台分类文章列表界面
     Route::get('/article/cat/{num}','Home\ArticleController@articleCat');
-    //前台文章列表
+    //ajax加载前台分类文章列表
+    Route::get('/ajax/article/cat/{num}','Home\ArticleController@ajaxArticleCat');
+
+    //前台文章列表界面
     Route::get('/article/list/{num}','Home\ArticleController@articleList');
+    //ajax加载前台文章列表
+    Route::get('/ajax/article/list/{num}','Home\ArticleController@ajaxArticleList');
+
     //前台文章内容
     Route::get('/article/info/{num}','Home\ArticleController@articleInfo');
     //前台文章下一篇(当ajax失败时使用的方法)
