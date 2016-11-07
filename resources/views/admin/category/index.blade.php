@@ -55,28 +55,21 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-body">
-                            <form action="/goodcate" method="get" class="form-horizontal form-inline f-ib">
-                                <input type="text" name="keyName" value="{{$datacol['args']['keyName']}}" class="form-control" placeholder="分类名称">
-                                <button type="submit" class="btn btn-primary btn-sm" id="filter">筛选</button>
-                            </form>
-                            <a href="/goodcate" class="btn btn-default btn-sm unplay f-ib" role="button">取消筛选</a>
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table class="table table-bordered table-striped">
                                 <tr>
                                     <th>分类名称</th>
-                                    <th>关键字</th>
                                     <th>分类描述</th>
                                     <th>分类级别</th>
                                     <th>是否显示</th>
                                     <th>操作</th>
                                 </tr>
-                                @foreach ($datacol['datas'] as $data)
+                                @foreach ($category_list as $data)
                                     <tr>
-                                        <td align="center">{{$data['cat_name']}}</td>
-                                        <td align="center">{{$data['keyword']}}</td>
-                                        <td align="center">{{$data['cat_desc']}}</td>
+                                        <td align="center">{{$data->cat_name}}</td>
+                                        <td align="center">{{$data->cat_desc}}</td>
                                         <td align="center">
                                             <?php
-                                                switch ($data['parent_id']){
+                                                switch ($data->parent_id){
                                                     case 0:
                                                         echo "一级分类";
                                                         break;
@@ -88,7 +81,7 @@
                                         </td>
                                         <td align="center">
                                             <?php
-                                                switch($data['is_show']){
+                                                switch($data->is_show){
                                                     case 0:
                                                         echo "否";
                                                         break;
@@ -99,16 +92,25 @@
                                             ?>
                                         </td>
                                         <td align="center">
-                                            <button type="button" class="view f-ib btn btn-primary btn-xs" data-id="{{$data['cat_id']}}" data-pid="{{$data['parent_id']}}"data-toggle="modal" data-target="#myView">查看子分类</button>
-                                            <button type='button' class='edit f-ib btn btn-primary btn-xs' data-id="{{$data['cat_id']}}" data-pid="{{$data['parent_id']}}" data-toggle="modal" data-target="#myModal">编辑</button>
-                                            <button type="button" class="del f-ib btn btn-danger btn-xs" data-id="{{$data['cat_id']}}">删除</button>
+                                            <?php
+                                                switch ($data->parent_id){
+                                                    case 0:
+                                                        echo "<button type='button' class='view f-ib btn btn-primary btn-xs' data-id=".$data->cat_id." data-toggle='modal' data-target='#myView'>查看子分类</button>";
+                                                        break;
+                                                    default:
+                                                        break;
+                                                }
+                                            ?>
+                                            <button type='button' class='edit f-ib btn btn-primary btn-xs' data-id="{{$data->cat_id}}" data-pid="{{$data->parent_id}}"
+                                            data-category="{{$data->category}}" data-toggle="modal" data-target="#myModal">编辑</button>
+                                            <button type="button" class="del f-ib btn btn-danger btn-xs" data-id="{{$data->cat_id}}">删除</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="6" align="center">
-                                        <?php echo $datacol['datas']->appends($datacol['args'])->render(); ?>
+                                    <td colspan="5" align="center">
+                                        <?php echo $category_list->render(); ?>
                                     </td>
                                 </tr>
                             </table>
@@ -143,7 +145,7 @@
             </div>
         </div>
     </div>
-            <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -163,12 +165,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="keyword" class="col-sm-2 control-label">关键字</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keyword">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="keyword" class="col-sm-2 control-label">排名</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="sort" id="sort" placeholder="阿拉伯数字，从小到大排">
@@ -177,13 +173,13 @@
                         <div class="form-group">
                             <label for="description" class="col-sm-2 control-label">描述</label>
                             <div class="col-sm-9">
-                                <textarea name="description" id="description" placeholder="Description" cols="57" rows="5"></textarea>
+                                <textarea name="description" id="description" placeholder="描述" cols="57" rows="5"></textarea>
                             </div>
                         </div>
-                        <div class="form-group" id="par">
+                        <div class="form-group">
                             <label for="parent" class="col-sm-2 control-label">父级分类</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="parent" id="par0">
+                                <select class="form-control" name="parent" id="par">
                                 </select>
                             </div>
                         </div>
@@ -216,6 +212,8 @@
 <script src="/admin/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="/admin/dist/js/app.min.js"></script>
+<script src="/admin/plugins/form/jquery.validate.min.js"></script>
+<script src="/admin/js/jquery.form.js"></script>
 <script src="/admin/js/cate.js"></script>
 </body>
 </html>

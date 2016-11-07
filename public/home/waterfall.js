@@ -38,6 +38,7 @@ $(function (){
                type:'GET',
                success : function(data)
                {
+                   //console.log(data);
                    for(var i=0;i<data.length;i++){
                        lis+='<li class="span4 mix recommend unfinished pagelenght" data-created="" data-weight="" style="display: inline-block;"><div class="thumbnail"><div class="content"><a href="/article/info/'+data[i].article_id+'"><img typeof="foaf:Image" src="'+data[i].img+'" width="673" height="300" alt="'+data[i].title+'"/>  <div class="header"><h3 class="title">'+data[i].title+'</h3><p class="alias">'+data[i].subheading+'</p></div></a></div><div class="meta"><span>'+data[i].created_at+'</span><span class="pull-right">'+data[i].author+'</span></div></div></li>';
                    }

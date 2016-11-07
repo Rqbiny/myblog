@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use Cache;
+use Input;
 
 /*
 *   该控制器是分类管理
@@ -20,7 +22,17 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index');
+        //定义缓存的名字
+        $cacheName='Admin_Category_'.Input::get('page');
+        $cacheData=Cache::get($cacheName);
+        if($cacheData){
+            $category_list=$cacheData;
+        }else{
+            $category_list=DB::table('rqbin_category')->select('cat_id','cat_name','cat_desc','parent_id','category','is_show')->paginate(8);
+            //将查询结果加入缓存
+            Cache::tags('Admin_Category','Category')->add($cacheName, $category_list, 720);
+        }
+        return view('admin.category.index',compact("category_list"));
     }
 
     /**
@@ -52,6 +64,7 @@ class CategoryController extends Controller
                 'parent_id' => $request->parent?$request->parent:0,
             ]
         );
+        Cache::tags('Category')->flush();
         return view("admin.category.create")->with('mes','添加成功！');
     }
 
@@ -63,8 +76,17 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
+        //定义缓存的名字
+        $cacheName='Admin_Category_parent_'.$id;
+        $cacheData=Cache::get($cacheName);
+        if($cacheData){
+            $datas=$cacheData;
+        }else{
         //查出分类
-        $datas=DB::table('rqbin_category')->select('cat_id','cat_name')->where('parent_id',0)->where('category',$id)->get();
+            $datas=DB::table('rqbin_category')->select('cat_id','cat_name','parent_id')->where('parent_id',0)->where('category',$id)->get();
+            //将查询结果加入缓存
+            Cache::tags('Category')->add($cacheName, $datas, 720);
+        }
         return $datas;
     }
 
@@ -73,8 +95,17 @@ class CategoryController extends Controller
     */
     public function cate($id)
     {
+        //定义缓存的名字
+        $cacheName='Admin_Category_cat_'.$id;
+        $cacheData=Cache::get($cacheName);
+        if($cacheData){
+            $datas=$cacheData;
+        }else{
         //插入分类
-        $datas=DB::table('rqbin_category')->select('cat_id','cat_name')->where('parent_id',$id)->get();
+            $datas=DB::table('rqbin_category')->select('cat_id','cat_name')->where('parent_id',$id)->get();
+            //将查询结果加入缓存
+            Cache::tags('Category')->add($cacheName, $datas, 720);
+        }
         return $datas;
     }
 
@@ -86,7 +117,17 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        //定义缓存的名字
+        $cacheName='Admin_Category_cat_first_'.$id;
+        $cacheData=Cache::get($cacheName);
+        if($cacheData){
+            $datas=$cacheData;
+        }else{
+            $datas=DB::table('rqbin_category')->where('cat_id',$id)->first();
+            //将查询结果加入缓存
+            Cache::tags('Category')->add($cacheName, $datas, 720);
+        }
+        return json_encode($datas);
     }
 
     /**
@@ -98,7 +139,23 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //进行更新
+        $result=DB::table('rqbin_category')->where('cat_id',$id)->update(
+            [
+                'cat_name'      =>  $request->catname,
+                'cat_desc'      =>  $request->description,
+                'sort_order'    =>  $request->sort,
+                'parent_id'     =>  $request->parent,
+                'is_show'       =>  $request->ishow,
+            ]
+        );
+        //判断是否更新成功
+        if($result){
+            Cache::tags('Category')->flush();
+            return response()->json(['serverTime'=>time(),'ServerNo'=>0,'ResultData'=>['Message'=>'分类修改成功']]);
+        }else{
+            return response()->json(['serverTime'=>time(),'ServerNo'=>8,'ResultData'=>['Message'=>'分类修改失败']]);
+        }
     }
 
     /**
@@ -109,6 +166,13 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result=DB::table('rqbin_category')->where('cat_id',$id)->delete();
+        //判断是否更新成功
+        if($result){
+            Cache::tags('Category')->flush();
+            return '分类删除成功';
+        }else{
+            return '分类删除失败';
+        }
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Markdown;
 use Input;
 use DB;
+use Cache;
 
 /*
 *   该控制器是文章管理
@@ -22,7 +23,16 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','author','created_at')->orderBy('article_id','DESC')->paginate(8);
+        //定义缓存的名字
+        $cacheName='Admin_ArticleList_'.Input::get('page');
+        $cacheData=Cache::get($cacheName);
+        if($cacheData){
+            $article_list=$cacheData;
+        }else{
+            $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','content','author','created_at')->orderBy('article_id','DESC')->paginate(8);
+            //将查询结果加入缓存
+            Cache::tags('Admin_ArticleList','article')->add($cacheName, $article_list, 720);
+        }
         return view('admin.article.index',compact("article_list"));
     }
 
@@ -105,6 +115,7 @@ class ArticleController extends Controller
         }
         //提交事务
         DB::commit();
+        Cache::tags('articleSection'.$request->section, 'articleIndex','articleCat'.$request->category,'articleList'.$request->parent,'preNextArticle'.$request->category,'Admin_ArticleList')->flush();
         return response()->json(['serverTime'=>time(),'ServerNo'=>0,'ResultData'=>['Message'=>'文章发布成功']]);
     }
 
@@ -139,7 +150,25 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //判断内容是否是空
+        if(!$request->editorValue){
+            return response()->json(['serverTime'=>time(),'ServerNo'=>8,'ResultData'=>['Message'=>'文章修改失败,内容不能为空']]);
+        }
+        //进行更新
+        $result=DB::table('rqbin_article')->where('article_id',$id)->update(
+            [
+                'title'      =>  $request->title,
+                'subheading' =>  $request->subheading,
+                'content'    =>  $request->editorValue,
+            ]
+        );
+        //判断是否更新成功
+        if($result){
+            Cache::forget('Home_articleInfo_'.$id);
+            return response()->json(['serverTime'=>time(),'ServerNo'=>0,'ResultData'=>['Message'=>'文章修改成功']]);
+        }else{
+            return response()->json(['serverTime'=>time(),'ServerNo'=>8,'ResultData'=>['Message'=>'文章修改失败']]);
+        }
     }
 
     /**
@@ -150,7 +179,15 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result=DB::table('rqbin_article')->where('article_id',$id)->delete();
+        //判断是否更新成功
+        if($result){
+            Cache::tags('Admin_ArticleList')->flush();
+            Cache::forget('Home_articleInfo_'.$id);
+            return '文章删除成功';
+        }else{
+            return '文章删除失败';
+        }
     }
 
     /*

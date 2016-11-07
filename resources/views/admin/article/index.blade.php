@@ -38,7 +38,9 @@
 	.gallery{width: 80px; height: 80px; background: url("/admin/image/catetypecreate/add.jpg") center center no-repeat; border: solid #ddd 1px;  cursor: pointer; display:table-cell; vertical-align: middle;}
 	.gallery img{max-width: 100%; max-height: 100%;}
 	.addpic{margin-top: -100px;}
+	.hid{display:none;}
 	</style>
+	@include('UEditor::head')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -63,7 +65,7 @@
 				<div class="col-xs-12">
 					<div class="box">
 						<div class="box-body">
-							<table id="example1" class="table table-bordered table-striped">
+							<table class="table table-bordered table-striped">
 								<tr>
 									<th width="5">ID</th>
 									<th width="25%">标题</th>
@@ -79,14 +81,15 @@
 									<td align="center">{{$data->subheading}}</td>
 									<td align="center">{{$data->author}}</td>
 									<td align="center">{{$data->created_at}}</td>
+									<td align="center" class="hid">{{$data->content}}</td>
 									<td align="center">
 										<button type='button' class='edit f-ib btn btn-primary btn-xs' data-toggle="modal" data-target="#myModal">编辑</button>
-										<button type="button" class="del f-ib btn btn-danger btn-xs">删除</button>
+										<button type="button" class="del f-ib btn btn-danger btn-xs" data-id="{{$data->article_id}}">删除</button>
 									</td>
 								</tr>
 								@endforeach
 								<tr>
-								  <td colspan="4" align="center">
+								  <td colspan="6" align="center">
 									<?php echo $article_list->render(); ?>
 								  </td>
 								</tr>
@@ -110,27 +113,37 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">编辑发布</h4>
+					<h4 class="modal-title">文章编辑</h4>
 				</div>
 				<div class="modal-body">
 					<form role="form" class="form-horizontal" action="" method="post" id="updateform">
 						<input type="hidden" name="_method" value="PUT">
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="title">标题</label>
-							<div class="col-sm-9">
-								<input type="text" name="title" id="title" class="form-control" required/>
+							<label class="col-sm-2 control-label" for="name">标题</label>
+							<div class="col-sm-8">
+								<input type="text" name="title" class="form-control" id="title" placeholder="标题15字以内" required>
 							</div>
-						</div><!--end form-group-->
+						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="content">内容</label>
-							<div class="col-sm-9">
-								<textarea name="content" id="content" class="form-control" rows="5"></textarea>
+							<label class="col-sm-2 control-label" for="name">副标题</label>
+							<div class="col-sm-8">
+								<input type="text" name="subheading" class="form-control" id="subheading" placeholder="副标题20字以内" required>
 							</div>
-						</div><!--end form-group-->
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="name">内容</label>
+							<div class="col-sm-10" id="container">
+								<div style="padding-left:0" class="col-sm-10" id="editer">
+								<script type="text/javascript">
+									UE.getEditor('editer');
+								</script>
+								</div>
+							</div>
+						</div>
 						<div class="form-group text-center">
 							<label class="col-sm-3 control-label"></label>
 							<div class="col-sm-3">
-								<button type="button" class="btn btn-info" id="save">保存</button>
+								<button type="submit" class="btn btn-info" id="save">保存</button>
 							</div>
 						</div><!--end form-group text-center-->
 					</form>
@@ -162,6 +175,11 @@
 <script src="/admin/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="/admin/dist/js/app.min.js"></script>
+{{--引入jquery插件验证表单--}}
+<script src="/admin/plugins/form/jquery.validate.min.js"></script>
 <script src="/admin/js/jquery.form.js"></script>
+<script src="/admin/js/webuploader.html5only.min.js"></script>
+<script src="/admin/js/diyUpload.js"></script>
+<script src="/admin/js/article.js"></script>
 </body>
 </html>

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use Input;
+use Cache;
 
 class IndexController extends Controller
 {
@@ -23,7 +25,16 @@ class IndexController extends Controller
     */
     public function ajaxindex()
     {
-        $article_new=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->orderBy('article_id','DESC')->paginate(12)->toArray();
+        //定义缓存的名字
+        $cacheName='Home_ajax_index_'.Input::get('page');
+        $cacheData=Cache::get($cacheName);
+        if($cacheData){
+            $article_new=$cacheData;
+        }else{
+            $article_new=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->orderBy('article_id','DESC')->paginate(12)->toArray();
+            //将查询结果加入缓存
+            Cache::tags('articleIndex','article')->add($cacheName, $article_new, 720);
+        }
         return $article_new['data'];
     }
 
@@ -40,7 +51,16 @@ class IndexController extends Controller
     */
     public function ajaxArticleHot()
     {
-        $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->orderBy('recommend','DESC')->paginate(12)->toArray();
+        //定义缓存的名字
+        $cacheName='Home_ajax_ArticleHot_'.Input::get('page');
+        $cacheData=Cache::get($cacheName);
+        if($cacheData){
+            $article_list=$cacheData;
+        }else{
+            $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->orderBy('recommend','DESC')->paginate(12)->toArray();
+            //将查询结果加入缓存
+            Cache::tags('articleHot','article')->add($cacheName, $article_list, 720);
+        }
         return $article_list['data'];
     }
 
@@ -57,7 +77,16 @@ class IndexController extends Controller
     */
     public function ajaxArticleSection($id)
     {
-        $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->where('section_id',$id)->orderBy('article_id','DESC')->paginate(12)->toArray();
+        //定义缓存的名字
+        $cacheName='Home_ajax_ArticleSection_'.$id.'_'.Input::get('page');
+        $cacheData=Cache::get($cacheName);
+        if($cacheData){
+            $article_list=$cacheData;
+        }else{
+            $article_list=DB::table('rqbin_article')->select('article_id','title','subheading','img','author','created_at')->where('section_id',$id)->orderBy('article_id','DESC')->paginate(12)->toArray();
+            //将查询结果加入缓存
+            Cache::tags('articleSection'.$id,'article')->add($cacheName, $article_list, 720);
+        }
         return $article_list['data'];
     }
 }

@@ -1,5 +1,5 @@
 /**
- * Created by redscarf on 2016/9/18.
+ * redscarf
  */
 $(function (){
 
