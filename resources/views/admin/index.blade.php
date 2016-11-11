@@ -71,7 +71,7 @@
                 <div class="inner">
                     <h3></h3>
 
-                    <p>新增订单</p>
+                    <p>文章统计</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-bag"></i>
@@ -86,7 +86,7 @@
                 <div class="inner">
                     <h3></h3>
 
-                    <p>新增商铺</p>
+                    <p>数据统计</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
@@ -101,7 +101,7 @@
                 <div class="inner">
                     <h3></h3>
 
-                    <p>新增用户</p>
+                    <p>用户统计</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
@@ -116,7 +116,7 @@
                 <div class="inner">
                     <h3></h3>
 
-                    <p>新增认证</p>
+                    <p>访问统计</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>

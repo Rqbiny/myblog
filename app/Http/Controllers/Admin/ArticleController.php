@@ -93,7 +93,7 @@ class ArticleController extends Controller
             $article_match="";
             //对商品描述进行中文分词
             $seg=new \App\Segment\lib\Segment();
-            $arr_key=$request->title.$request->subheading.$request->content;
+            $arr_key=$request->title.$request->subheading.$content;
             //$arr_key=str_replace(['(','（','）',')','；','“','”','，',',','、','"','。'],'',$arr_key);
             $res = $seg->get_keyword($arr_key);
             $res_arr=explode(' ',$res);
@@ -180,6 +180,7 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $result=DB::table('rqbin_article')->where('article_id',$id)->delete();
+        DB::table('rqbin_search')->where('article_id',$id)->delete();
         //判断是否更新成功
         if($result){
             Cache::tags('Admin_ArticleList')->flush();

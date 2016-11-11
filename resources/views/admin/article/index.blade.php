@@ -81,7 +81,7 @@
 									<td align="center">{{$data->subheading}}</td>
 									<td align="center">{{$data->author}}</td>
 									<td align="center">{{$data->created_at}}</td>
-									<td align="center" class="hid">{{$data->content}}</td>
+									<td align="center" class="hid">{{htmlspecialchars($data->content)}}</td>
 									<td align="center">
 										<button type='button' class='edit f-ib btn btn-primary btn-xs' data-toggle="modal" data-target="#myModal">编辑</button>
 										<button type="button" class="del f-ib btn btn-danger btn-xs" data-id="{{$data->article_id}}">删除</button>

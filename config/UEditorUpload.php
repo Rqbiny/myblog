@@ -9,9 +9,9 @@ return [
 | 新增配置,route
 |--------------------------------------------------------------------------
 |
-|注意权限验证,请自行添加middleware 
+|注意权限验证,请自行添加middleware
 |middleware 相当重要,请根据自己的项目设置,比如如果在后台使用,请设置为后台的auth middleware.
-|如果是单纯本机测试,请将 
+|如果是单纯本机测试,请将
 |`// 'middleware' => 'auth',` 直接注释掉,如果留 `'middleware'=>''`空值,会产生bug,原因不详.
 |
 |
@@ -21,7 +21,7 @@ return [
            // 'middleware' => 'auth',
         ],
 
-        'mode'=>'local',//上传方式,local 为本地   qiniu 为七牛
+        'mode'=>'oss',//上传方式,local 为本地   qiniu 为七牛
 
         //七牛配置,若mode='qiniu',以下为必填.
         'qiniu'=>[
@@ -63,14 +63,14 @@ return [
         /* 涂鸦图片上传配置项 */
         "scrawlActionName" => "uploadscrawl", /* 执行上传涂鸦的action名称 */
         "scrawlFieldName" => "upfile", /* 提交的图片表单名称 */
-        "scrawlPathFormat" => "/uploads/ueditor/php/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+        "scrawlPathFormat" => "/uploads/ueditor/php1/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
         "scrawlMaxSize" => 2048000, /* 上传大小限制，单位B */
         "scrawlUrlPrefix" => "", /* 图片访问路径前缀 */
         "scrawlInsertAlign" => "none",
 
         /* 截图工具上传 */
         "snapscreenActionName" => "uploadimage", /* 执行上传截图的action名称 */
-        "snapscreenPathFormat" => "/uploads/ueditor/php/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+        "snapscreenPathFormat" => "/uploads/ueditor/php2/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
         "snapscreenUrlPrefix" => "", /* 图片访问路径前缀 */
         "snapscreenInsertAlign" => "none", /* 插入的图片浮动方式 */
 
@@ -78,7 +78,7 @@ return [
         "catcherLocalDomain" => ["127.0.0.1", "localhost", "img.baidu.com"],
         "catcherActionName" => "catchimage", /* 执行抓取远程图片的action名称 */
         "catcherFieldName" => "source", /* 提交的图片列表表单名称 */
-        "catcherPathFormat" => "/uploads/ueditor/php/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+        "catcherPathFormat" => "/ueditor/article/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
         "catcherUrlPrefix" => "", /* 图片访问路径前缀 */
         "catcherMaxSize" => 2048000, /* 上传大小限制，单位B */
         "catcherAllowFiles" => [".png", ".jpg", ".jpeg", ".gif", ".bmp"], /* 抓取图片格式显示 */
@@ -86,7 +86,7 @@ return [
         /* 上传视频配置 */
         "videoActionName" => "uploadvideo", /* 执行上传视频的action名称 */
         "videoFieldName" => "upfile", /* 提交的视频表单名称 */
-        "videoPathFormat" => "/uploads/ueditor/php/upload/video/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+        "videoPathFormat" => "/uploads/ueditor/php4/upload/video/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
         "videoUrlPrefix" => "", /* 视频访问路径前缀 */
         "videoMaxSize" => 102400000, /* 上传大小限制，单位B，默认100MB */
         "videoAllowFiles" => [

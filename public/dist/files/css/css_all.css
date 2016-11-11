@@ -4820,21 +4820,21 @@ a.thumbnail:focus, a.thumbnail:hover {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 300;
-    src: local('Open Sans Light'), local('OpenSans-Light'), url(http://assets.ninghao.net/open-sans-300.woff) format('woff');
+    src: local('Open Sans Light'), local('OpenSans-Light'), url("") format('woff');
 }
 
 @font-face {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
-    src: local('Open Sans'), local('OpenSans'), url(http://assets.ninghao.net/open-sans-400.woff) format('woff');
+    src: local('Open Sans'), local('OpenSans'), url("") format('woff');
 }
 
 @font-face {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600;
-    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://assets.ninghao.net/open-sans-600.woff) format('woff');
+    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url("") format('woff');
 }
 
 body {

@@ -48,7 +48,7 @@ class Segment {
   	unset($this->rank_dic);
   }
   function get_source($str) {
-  	if(env('CHARSET', 'utf-8') == 'utf-8') $str = iconv('utf-8','gbk',$str);
+  	if(env('CHARSET', 'utf-8') == 'utf-8') $str = iconv('utf-8','gbk//ignore',$str);
   	$this->source_string = $str;
   	$this->result_string = '';
   }
@@ -73,7 +73,7 @@ class Segment {
   		  $this->result_string = $this->split_mm($spwords[$i],$try_num_name,$try_diff).$spc.$this->result_string;
   	  }
   	}
-  	if(env('CHARSET', 'utf-8')=='utf-8') $okstr = iconv('gbk','utf-8',$this->result_string);
+  	if(env('CHARSET', 'utf-8')=='utf-8') $okstr = iconv('gbk//ignore','utf-8',$this->result_string);
   	else $okstr = $this->result_string;
   	return $okstr;
   }

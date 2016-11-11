@@ -57,6 +57,17 @@ Route::group(['domain' => 'admin.rqbin.net'], function () {
             Route::post('/article/preview','Admin\ArticleController@preview');
             //后台文章模块
             Route::resource('/article','Admin\ArticleController');
+            // Route::post('/test',function(Request $request){
+            //     $data=$request::all();
+            //     //var_dump($data);
+            //     //深度搜索的中文分词字符串
+            //     $article_match="";
+            //     //对商品描述进行中文分词
+            //     $seg=new \App\Segment\lib\Segment();
+            //     $arr_key=$data['title'].$data['subheading'].$data['editorValue'];
+            //     $res = $seg->get_keyword($arr_key);
+            //     var_dump($res);
+            // });
 
         });
     });

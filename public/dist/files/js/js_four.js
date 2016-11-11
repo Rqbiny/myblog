@@ -4430,22 +4430,22 @@
 
                 // Video background
                 $(".front .video-bg").vide({
-                    mp4: 'http://assets.ninghao.net/blue_bokeh.mp4',
-                    poster: '/files/blue_bokeh.jpg'
+                    mp4: '',
+                    poster: ''
                 }, {
                     posterType: "jpg"
                 });
 
                 $(".node-type-guide .video-bg").vide({
-                    mp4: 'http://assets.ninghao.net/blue_bokeh.mp4',
-                    poster: '/files/blue_bokeh.jpg'
+                    mp4: '',
+                    poster: ''
                 }, {
                     posterType: "jpg"
                 });
 
                 $(".node-type-video .video-bg").vide({
-                    mp4: 'http://assets.ninghao.net/blue_bokeh.mp4',
-                    poster: '/files/blue_bokeh.jpg'
+                    mp4: '',
+                    poster: ''
                 }, {
                     posterType: "jpg"
                 });
