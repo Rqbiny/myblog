@@ -93,7 +93,7 @@
 @include('inc.home.foot')
 <script type="text/javascript" src="/dist/unslider/js/unslider-min.js"></script>
 <script type="text/javascript" src="/dist/unslider/js/jquery.event.move.js"></script>
-<script type="text/javascript" src="/dist/unslider/js/jQuery.event.swipe.js"></script>
+<script type="text/javascript" src="/dist/unslider/js/jquery.event.swipe.js"></script>
 <script type="text/javascript" src="/home/waterfall.js"></script>
 <script>
     if(window.chrome) {
